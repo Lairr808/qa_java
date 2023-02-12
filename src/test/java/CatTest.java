@@ -6,26 +6,26 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
 
 public class CatTest {
+
     @Mock
     Feline feline;
 
     @Test
     public void catEatsMeatTrue() throws Exception {
-        feline.getFood("Хищник");
-        Mockito.verify(feline).getFood(Mockito.anyString());
+        Cat cat = new Cat(feline);
+        List<String> expected = List.of("Животные", "Птицы", "Рыба");
+        Mockito.when(feline.eatMeat()).thenReturn(expected);
+        Assert.assertEquals(expected, cat.getFood());
     }
 
-    @Mock
-    Cat cat;
-
     @Test
-    public void catSaysMeowTrue() throws Exception {
-        String result = "Мяу";
-        Mockito.when(cat.getSound()).thenReturn("Мяу");
-        Assert.assertEquals(cat.getSound(), result);
+    public void catSaysMeowTrue() {
+        Cat cat = new Cat(feline);
+        Assert.assertEquals(cat.getSound(), "Мяу");
     }
 }

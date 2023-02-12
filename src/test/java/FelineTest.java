@@ -1,45 +1,37 @@
-import com.example.Animal;
 import com.example.Feline;
-import com.example.Lion;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-
 import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
 
 public class FelineTest {
-    @Mock
-    Animal animal;
 
     @Test
     public void felineEatsMeatTrue() throws Exception{
-        Mockito.when(animal.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+        Feline feline = new Feline();
         List<String> expectedResult = List.of("Животные", "Птицы", "Рыба");
-        List<String> actualResult = animal.getFood("Хищник");
-        assertEquals(actualResult, expectedResult);
+        assertEquals(feline.eatMeat(), expectedResult);
     }
 
-    @Mock
-    Feline feline;
-
     @Test
-    public void countLionIsOne() throws Exception{
-        Lion lion = new Lion("Самка", feline);
-        Mockito.when(feline.getKittens()).thenReturn(1);
-        int expectedLionCount = 1;
-        int actualLionCount = lion.getKittens();
+    public void countLionIsOne(){
+        Feline feline = new Feline();
+        assertEquals(1, feline.getKittens());
+    }
+    @Test
+    public void getKittensCountTest() {
+        Feline feline = new Feline();
+        int expectedLionCount = 3;
+        int actualLionCount = feline.getKittens(3);
         assertEquals(expectedLionCount, actualLionCount);
     }
 
     @Test
-    public void getFamilyFeline() throws Exception{
-        Mockito.when(feline.getFamily()).thenReturn("Кошачьи");
+    public void getFamilyFeline() {
+        Feline feline = new Feline();
         String expectedResult = "Кошачьи";
         String actualResult = feline.getFamily();
         assertEquals(expectedResult, actualResult);

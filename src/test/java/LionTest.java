@@ -7,9 +7,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-
 import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -24,15 +22,14 @@ public class LionTest {
         Mockito.when(lion.getKittens()).thenReturn(1);
         Assert.assertEquals(lion.getKittens(), result);
     }
-    @Mock
-    Animal animal;
 
     @Test
     public void lionEatsMeatTrue() throws Exception{
-        Mockito.when(animal.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
-        List actualResult = animal.getFood("Хищник");
+        Lion lion = new Lion("Самка", feline);
+        Mockito.when(feline.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+        List actualResult = lion.getFood();
         List expectedResult = List.of("Животные", "Птицы", "Рыба");
-        Assert.assertEquals(actualResult, expectedResult);
+        assertEquals(actualResult, expectedResult);
     }
 
     @Mock
