@@ -31,18 +31,5 @@ public class LionTest {
         List expectedResult = List.of("Животные", "Птицы", "Рыба");
         assertEquals(actualResult, expectedResult);
     }
-
-    @Mock
-    Lion lion;
-
-    @Test
-    public void countLionIsOne1() {
-        Mockito.when(lion.getKittens()).thenReturn(1);
-        int expectedLionCount = 1;
-        int actualLionCount = lion.getKittens();
-        assertEquals(expectedLionCount, actualLionCount);
-    }
-
-
 }
 
